@@ -23,7 +23,11 @@ class ViewController: UIViewController {
         
         tipPercent = 1.0
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        onEditingChanged("")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
