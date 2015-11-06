@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
-    @IBOutlet weak var tipControl: UISegmentedControl!
+    var tipPercent : Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
         
+        tipPercent = 1.0
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,14 +30,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onEditingChanged(sender: AnyObject) {
-        print("User editing bill")
-        let billAmount = billField.text
-        let tipPercent : Array = [0.18, 0.2, 0.25]
+        print("User editing bill %@", tipPercent)
         
+        let billAmount = billField.text
         
         if billAmount?.characters.count > 0 {
             let billAmountDouble: Double = Double(billAmount!)!
-            let tip: Double = billAmountDouble * tipPercent[tipControl.selectedSegmentIndex]
+            let tip: Double = billAmountDouble * tipPercent
             let total = billAmountDouble + tip
             
             tipLabel.text = String(format: "$%.2f", tip)
@@ -53,11 +53,16 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction func onValueSegmentedChanged(sender: AnyObject) {
-        self.onEditingChanged("")
-        
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "settingVC" {
+            (segue.destinationViewController as! SettingController).delegate = self
+        }
     }
-    
-    
+}
+
+extension ViewController: SettingControllerDelegate {
+    func getTipPercent (percents: Double) {
+        tipPercent = percents
+    }
 }
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="d2i-1m-urw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Calculator-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="caculatorVC" id="BYZ-38-t0r" customClass="ViewController" customModule="tips" customModuleProvider="target" sceneMemberID="viewController">
@@ -58,17 +58,10 @@
                                     <action selector="onEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="CRF-Mr-xC0"/>
                                 </connections>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ss9-31-qgj">
-                                <rect key="frame" x="20" y="303" width="335" height="29"/>
-                                <segments>
-                                    <segment title="18%"/>
-                                    <segment title="20%"/>
-                                    <segment title="25%"/>
-                                </segments>
-                                <connections>
-                                    <action selector="onValueSegmentedChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="yKS-F6-qjd"/>
-                                </connections>
-                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ase-xK-hK2">
+                                <rect key="frame" x="295" y="20" width="60" height="30"/>
+                                <state key="normal" title="Setting"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -76,10 +69,16 @@
                             <outletCollection property="gestureRecognizers" destination="oII-Af-Yat" appends="YES" id="qXH-Bt-OVE"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" title="Calculator" id="FHh-h8-Q4L">
+                        <barButtonItem key="rightBarButtonItem" title="Setting" id="r7Y-Ua-zrA">
+                            <connections>
+                                <segue destination="TJZ-L8-uNt" kind="push" identifier="settingVC" id="Iiq-dJ-rpD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="billField" destination="KvB-Un-FDW" id="ymJ-hg-DR8"/>
-                        <outlet property="tipControl" destination="ss9-31-qgj" id="cmG-1U-qUl"/>
                         <outlet property="tipLabel" destination="tfH-7x-5bI" id="2hW-gz-gg5"/>
                         <outlet property="totalLabel" destination="J2a-x8-gcF" id="Rcd-nj-hGa"/>
                     </connections>
@@ -91,7 +90,63 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="259.5" y="440.5"/>
+            <point key="canvasLocation" x="1071.5" y="440.5"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="STy-8F-kCM">
+            <objects>
+                <viewController id="TJZ-L8-uNt" customClass="SettingController" customModule="tips" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pgx-TH-K9S"/>
+                        <viewControllerLayoutGuide type="bottom" id="wrv-fj-uU6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YNg-et-WhQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TUF-ny-aVl">
+                                <rect key="frame" x="20" y="91" width="335" height="29"/>
+                                <segments>
+                                    <segment title="18%"/>
+                                    <segment title="20%"/>
+                                    <segment title="25%"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onValueSegmentChanged:" destination="TJZ-L8-uNt" eventType="valueChanged" id="TT5-8b-JeB"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Setting" id="D1k-iL-TM3">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="hEf-ub-b60"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="segment" destination="TUF-ny-aVl" id="n9c-PO-f59"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t1G-jl-ZH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1537.5" y="440.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="D4v-87-NSa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d2i-1m-urw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5SB-tv-fb3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lee-Gp-1Tj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sji-Aq-2xW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="259" y="440"/>
         </scene>
     </scenes>
 </document>

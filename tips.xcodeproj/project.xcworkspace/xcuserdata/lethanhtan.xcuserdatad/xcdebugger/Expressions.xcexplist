@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "SettingController.onValueSegmentChanged(AnyObject) -&gt; ():SettingController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Double(tipPercentArr[index] as! NSNumber)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
